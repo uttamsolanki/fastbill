@@ -1,0 +1,115 @@
+<div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>{{report}} </h5>
+                            <div class="ibox-tools">
+                              
+                                <a class="close-link">
+                                    <i class="fa fa-print"> Print</i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-sm-4 m-b-xs">
+                                    <div data-toggle="buttons" class="btn-group">
+                                        <label class="btn btn-sm btn-white" ng-click="SetDate('Day')" > <input type="radio" id="option1" name="options"> Day </label>
+                                        <label class="btn btn-sm btn-white" ng-click="SetDate('Yesterday')" > <input type="radio" id="option1" name="options"> Yesterday </label>
+                                        <label class="btn btn-sm btn-white active" ng-click="SetDate('Week')" > <input type="radio" id="option2" name="options"> Week </label>
+                                        <label class="btn btn-sm btn-white " ng-click="SetDate('Two Week')" > <input type="radio" id="option2" name="options"> Two Week </label>
+                                        <label class="btn btn-sm btn-white" ng-click="SetDate('Month')" > <input type="radio" id="option3" name="options"> Month </label>
+                                        <label class="btn btn-sm btn-white" ng-click="SetDate('Half Year')" > <input type="radio" id="option3" name="options"> Half Year </label>
+                         			   	<label class="btn btn-sm btn-white" ng-click="SetDate('Year')" > <input type="radio" id="option3" name="options"> Year </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 m-b-xs hide"><select ng-model="SetQuery" class="input-sm form-control input-s-sm inline">
+                                    <option value="Bill_No = {@BillNo}">Bill No</option>
+                                    <option value="Cust_Name like '%{@Cust}%'">Cust</option>
+                                    <option value="Date <= {@DateFrom} and Date >= {@DateTo}">Bill Date</option>
+                                        <option value="Total_Amt_val = {@BillAmount}">Bill Amount</option>
+                                    <option value="Balance_val = {@Balance}">Balance</option>
+                                </select>
+                                </div>
+                               
+                                <div class="col-sm-6">
+                                    <div class="input-group"><input type="text" ng-model="search" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
+                                        <button type="button" ng-click="ShowSalesDetails(SetQuery)" class="btn btn-sm btn-primary"> Go!</button> </span></div>
+                                </div>
+                                
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+
+                                        <th>Bill No </th>
+                                    	<th>Date </th>
+                                    	<th>Cust Name</th>
+                                        <th>Bill Amount</th>
+                                        <th>Cash Paid</th>
+                                        <th>CC Paid</th>
+										<th>Cheque Paid</th>
+										<th>Gift Voucher Paid</th>
+										<th>FOC Paid</th>
+										<th>Discount Amount</th>
+										<th>Tax Amount</th>
+										<th>Balance</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+										<tr ng-init="Total_Amt_val = 0">
+											<td><input type="text" ng-model="search.Bill_No"></td>
+											<td><input type="text" ng-model="search.Date"></td>
+											<td><input type="text" ng-model="search.Cust_Name"></td>
+											<td><input type="text" ng-model="search.Total_Amt_val"></td>
+											<td><input type="text" ng-model="search.Total_advance_val"></td>
+											<td><input type="text" ng-model="search.Credit_Card_Amount_val"></td>
+											<td><input type="text" ng-model="search.Cheque_Amount"></td>
+											<td><input type="text" ng-model="search.Gift_Voucher_Amount"></td>
+											<td><input type="text" ng-model="search.FOC_Coupon_Amount_val"></td>
+											<td><input type="text" ng-model="search.Discount_Coupon_Amount_val"></td>
+											<td><input type="text" ng-model="search.Total_TAX_NET_AMOUNT_val"></td>
+											<td><input type="text" ng-model="search.Balance_val"></td>
+										</tr>
+                                    <tr ng-repeat="item in model | filter:search:strict"> 
+                                    	<td><a href="Bill.html?id={{item.Bill_No.substring(1)}}"><i class="fa fa-check text-navy"></i>{{item.Bill_No}}</a></td>
+                                        <td>{{item.Date}}</td>
+                                    	<td>{{item.Cust_Name}}</td>
+                                       <td>{{item.Total_Amt_val}}</td>
+                                       <td>{{item.Total_advance_val}}</td>
+                                       <td>{{item.Credit_Card_Amount_val}}</td>
+                                       <td>{{item.Cheque_Amount}}</td>
+                                       <td>{{item.Gift_Voucher_Amount}}</td>
+									   <td>{{item.FOC_Coupon_Amount_val}}</td>
+                                       <td>{{item.Discount_Coupon_Amount_val}}</td>
+                                       <td>{{item.Total_TAX_NET_AMOUNT_val}}</td>
+                                       <td>{{item.Balance_val}}</td>
+                                       <td><a href="Bill.html?id={{item.Bill_No.substring(1)}}"><i class="fa fa-check text-navy"></i></a></td>
+                                    </tr>
+									<tr>
+										<td>Total: {{model.length}}</a></td>
+	                                     <td></td>
+	                                 	<td></td>
+	                                    <td>{{model.sum("Total_Amt_val") | currency}}</td>
+                                    	<td>{{model.sum("Total_advance_val") | currency}}</td>
+                                   		<td>{{model.sum("Credit_Card_Amount_val") | currency}}</td>
+                                   		<td>{{model.sum("Cheque_Amount") | currency}}</td>
+                                   		<td>{{model.sum("Gift_Voucher_Amount") | currency}}</td>
+                             			<td>{{model.sum("FOC_Coupon_Amount_val") | currency}}</td>
+	                                   
+                         				<td>{{model.sum("Discount_Coupon_Amount_val") | currency}}</td>
+                         				<td>{{model.sum("Total_TAX_NET_AMOUNT_val") | currency}}</td>
+                         				<td>{{model.sum("Balance_val") | currency}}</td>
+										
+									</tr>
+                                
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>

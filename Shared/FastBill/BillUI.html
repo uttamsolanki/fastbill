@@ -1,0 +1,42 @@
+
+<!--tets-->
+
+<!--tets-->
+<div class="row ">
+	<div class="ibox col-sm-12 col-md-12 col-lg-12">
+		<div ng-include src="'Shared/FastBill/Bill/BillButtons.html'" />
+	</div>
+</div>
+<div class="row">
+		<div class="ibox  margins-3 ">
+			<div class="ibox-title padding-3">
+				<div ng-include src="'Shared/Template/CardTemplate.html'" />
+				<div ng-include src="'Shared/FastBill/Bill/BarcodeChoose.html'" />
+			</div>
+			<div class="col ibox-content">
+				<div class="row ">
+					<div class=" col-md-3 col-lg-3 col-sm-3">
+						<div ng-include src="'Shared/FastBill/Bill/ItemCustom.html'" />
+					</div>
+					<div class=" col-md-4 col-lg-4 col-sm-4">
+						<div ng-include src="'Shared/FastBill/Bill/BillPayment.html'">
+						</div>
+					</div>
+
+					<div class=" col-sm-5 col-lg-5 col-md-5">
+				        <div ng-include src="'Shared/FastBill/Bill/BillTable.html'"></div>
+					</div>
+			</div>
+	</div>
+
+	<div ng-show="isDeveloperMode">
+		<pre>{{model | json}}</pre>
+		<pre>{{tempModel | json}}</pre>
+		<pre>{{BarcodeList | json}}</pre>
+	</div>
+
+	<div ng-include src="'Shared/FastBill/Bill/BillNoSearch.html'"></div>
+
+
+	<div ng-include src="'Shared/FastBill/Bill/BillPrint.html'"></div>
+

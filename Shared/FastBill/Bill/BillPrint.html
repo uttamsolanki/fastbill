@@ -1,0 +1,115 @@
+
+<div class="modal inmodal animated  " id="myModalPrint" tabindex="-9" role="dialog" aria-hidden="false" ><div class="modal-backdrop  in"></div>
+                                <div class="modal-dialog in" style="width:450px">
+                                <div class="modal-content animated bounceInRight">
+                                        <div class="modal-header">
+                                            <a type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></a>
+                                        <a onclick="printContent('myPrint')" type="button" class="btn btn-success" data-dismiss="modal">Print</a>
+                                        </div>
+                                        <div class="modal-body" id="myPrint">
+											<div class="row">
+			                                <div class="col-sm-6">
+			                                    <h1>VIMAL:</h1>
+			                                    <address>
+			                                        <strong>Only Vimal Showroom</strong><br>
+			                                        3092 Near Mulund Station, Mumbai - 400034
+													<br>
+			                                        <abbr title="Phone">P:</abbr> (939) 999-9383
+	                                        		<br>
+													<abbr title="Phone">CIN No:</abbr> L1928383933838
+	                                        		<br>
+	                                        		<abbr title="Phone">Cash Memo - Retail Invoice</abbr> 
+			                                    </address>
+			                                </div>
+
+			                                <div class="col-sm-6 text-right">
+			                                    
+			                                    <h4 class="text-navy">Invoice No. {{model.Bill_No.substring(1)}}</h4>
+			                                    <address>
+			                                        <strong>{{model.Cust_Name}}.</strong><br>
+			                                        {{model.Addr}}<br>
+			                                        {{model.City}}, {{model.Pincode}}<br>
+			                                        <abbr ng-show="model.Ph_no" title="Phone">P:</abbr> {{model.Ph_no}}
+			                                        <abbr ng-show="model.Mobile" title="Phone">M:</abbr> {{model.Mobile}}
+			                                    </address>
+			                                    <p>
+			                                        <span><strong>Invoice Date:</strong>{{model.Date}}</span><br>
+			                                        <span><strong>Due Date:</strong> {{model.Bal_Due_Date}}</span>
+			                                    </p>
+			                                </div>
+										       <table class="table invoice-table">
+				                                    <thead>
+				                                    <tr>
+				                                        <th>Item List</th>
+				                                        <th>Quantity</th>
+				                                        <th>Unit Price</th>
+				                                        <th>Tax</th>
+				                                        <th>Total Price</th>
+				                                    </tr>
+				                                    </thead>
+				                                    <tbody>
+				                                    <tr ng-repeat="item in model.det">
+				                                        <td><div><strong>{{item.Barcode_No}}</strong></div>
+				                                            <small>{{item.Product_Type}}, {{item.category}} <small>{{item.UOM}}</small>          <small>Agent: </small>{{item.SalesManCode}}  <small>Tax: </small>{{item.Tax_per_val}}</small></td>
+				                                        <td>{{item.Qty_val}}</td>
+				                                        <td>{{item.MRP_val}}</td>
+				                                        <td>{{item.Tax_per_val}}</td>
+				                                        <td>{{(item.Qty_val * item.MRP_val) + ((item.Qty_val * item.MRP_val) * item.Tax_per_val / 100)}} </td>
+				                                    </tr>
+			                                    
+				                                    </tbody>
+				                                </table>
+			
+											<table class="table invoice-total">
+				                                <tbody>
+				                                <tr>
+				                                    <td><strong>Sub Total :</strong></td>
+				                                    <td>{{model.Total_Amt_val}}</td>
+				                                </tr>
+				                                <tr>
+				                                    <td><strong>TAX :</strong></td>
+				                                    <td>{{model.Total_TAX_AMOUNT_val}}</td>
+				                                </tr>
+				                                <tr>
+				                                    <td><strong>TOTAL :</strong></td>
+				                                    <td>{{model.Total_Amt_val}}</td>
+				                                </tr>
+				                                <tr ng-show="model.Balance_val">
+				                                    <td><strong>Balance :</strong></td>
+				                                    <td>{{model.Balance_val}}</td>
+				                                </tr>
+				                                <tr ng-show="model.Balance_val">
+				                                    <td><strong>Due Date :</strong></td>
+				                                    <td>{{model.Bal_Due_Date}}</td>
+				                                </tr>
+				                                </tbody>
+				                            </table>
+											<div class="well m-t"><strong>Comments</strong>
+											 		** Amount Inclusive Of Vat **
+													<br>
+													******************************
+			                                     	<abbr title="Phone">TIN (VAT)# :</abbr> 2711039487584 vef 01/04/2006
+													<br>
+			                                     	<abbr title="Phone">TIN (CST)# :</abbr> 2711039487584 vef 01/04/2006
+													<br>
+													No Cash Refunds
+													<br>
+													Terms & Conditions Apply.
+													<br>
+													&nbsp;&nbsp;&nbsp;Reliance Industries LTD. 103/106
+													<br>
+													Naroda Industrial Estate, Ahmedabad - 30
+		                                     		<br>
+													<abbr title="Phone">TIN (VAT)# :</abbr> 24354765665
+													<br>
+													<abbr title="Phone">TIN (CST)# :</abbr> 24354765665
+													<br>
+													Thank You for Shopping with us.
+												
+											 </div>
+	                                        </div>
+			                            </div>
+										
+                                    </div>
+                                </div>
+                            </div>

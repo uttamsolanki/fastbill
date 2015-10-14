@@ -1,0 +1,301 @@
+<div class="row ">
+
+</div>
+<div class="row">
+    <div class="col-md-7">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+
+               <div class="pull-left">
+                   <h5>Purchase <small>Information</small></h5>
+               </div>
+                <div class="pull-right " style="float:right">
+                <a class="btn no-padding btn-success" ng-click="NewBarcode()">&nbsp;&nbsp;&nbsp;Add New&nbsp;&nbsp;&nbsp;</a>
+                    <a class="btn btn-danger no-padding" ng-click="DeletePurchase(model.Barcode_No)">&nbsp;&nbsp;&nbsp;Delete&nbsp;&nbsp;&nbsp;</a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row ">
+                    <div class="col-md-12">
+                        <div class="form-group"><label class="col-lg-2 text-right control-label">Barcode No:</label>
+
+                            <div class="col-lg-10"><input type="text" ng-model="model.Barcode_No" placeholder="ABCXXXX" class="form-control"> <span class="help-block m-b-none">Example Use Barcode No to store inventory information.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group"><label class="col-md-4 text-right no-padding control-label">Qty in Stock:</label>
+
+                            <div class="col-md-8"><input type="text"  ng-model="model.Qty_In_Stock_val" placeholder="0" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group"><label class="col-md-4 text-right no-padding control-label">MRP:</label>
+
+                            <div class="col-md-8"><input type="text"   ng-model="model.MRP_val" placeholder="0" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group"><label class="col-md-4 text-right no-padding control-label">Quality:</label>
+
+                            <div class="col-md-8"><input type="text" ng-model="model.QualityNo" placeholder="0" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group"><label class="col-md-4 text-right no-padding  control-label">Default Size:</label>
+
+                            <div class="col-md-8"><input type="text" ng-model="model.Default_Size_val" placeholder="0" class="form-control">
+                                <span class="help-block m-b-none"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group"><label class="col-md-4 text-right no-padding  control-label">Pcs Len:</label>
+
+                            <div class="col-md-8"><input type="text"  ng-model="model.Pcs_Length_val" placeholder="0" class="form-control">
+                                <span class="help-block m-b-none"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group"><label class="col-md-4 text-right no-padding  control-label">Size:</label>
+
+                            <div class="col-md-8"><input type="text" ng-model="model.Size_val" placeholder="0" class="form-control">
+                                <span class="help-block m-b-none"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group"><label class="col-md-4 text-right no-padding  control-label">Product:</label>
+
+                            <div class="col-md-8">
+                                <select class="form-control m-b" ng-model="model.Product_Type" name="account">
+                                    <option>Suiting</option>
+                                    <option>Fabric</option>
+									<option>Apparel Shirt</option>
+                                    <option>Ready Made</option>
+                                    <option>Other</option>
+                                </select>
+                                <span class="help-block m-b-none"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group"><label class="col-md-4 text-right no-padding  control-label">Tax %:</label>
+
+                            <div class="col-md-8"><input type="text"  ng-model="model.Tax_val" placeholder="0" class="form-control">
+                                <span class="help-block m-b-none"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group"><label class="col-md-4 text-right no-padding  control-label">Category:</label>
+
+                            <div class="col-md-8">
+                                <select class="form-control m-b"  ng-model="model.Category" name="account">
+                                    <option>Fresh</option>
+                                    <option>Old</option>
+                                    <option>Used</option>
+                                    <option>Other</option>
+                                </select>
+                                <span class="help-block m-b-none"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group"><label class="col-md-4 text-right no-padding  control-label">U.O.M:</label>
+
+                            <div class="col-md-8">
+                                <select class="form-control m-b" ng-model="model.UOM" name="account">
+                                    <option>Pcs</option>
+                                    <option>Meter</option>
+                                    <option>Ft</option>
+                                    <option>Other</option>
+                                </select>
+                                <span class="help-block m-b-none"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group"><label class="col-md-4 text-right no-padding  control-label">Sales Tax:</label>
+
+                            <div class="col-md-8">
+                                <select class="form-control m-b" ng-model="model.Sales_Tax" name="account">
+                                    <option>Applicable</option>
+                                    <option>Not Applicable</option>
+                                    <option>Other</option>
+                                </select>
+                                <span class="help-block m-b-none"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group"><label class="col-md-4 text-right no-padding  control-label"></label>
+
+                            <div class="col-md-8">
+                                <button class="btn btn-success" ng-click="SavePurchase()">Save</button>
+                                <span class="help-block m-b-none"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5 ">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Purchase <small>inventory form</small></h5>
+                <div class="ibox-tools">
+                   
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="form-group"><label class="col-sm-2 control-label">Search By <small>Barcode No</small></label>
+
+                        <div class="col-sm-10">
+                            <div class="input-group"><input type="text" ng-model="Barcode_No_Look" class="form-control"> <span class="input-group-btn">
+                            <button type="button" ng-click="SimilarBarcode(Barcode_No_Look)" class="btn btn-primary">Go!</button> </span></div>
+                        </div>
+                    </div>
+						
+
+                </div>
+				<div class="row">
+					<div style="height:180px;overflow:auto;">
+	                <table class="table table-bordered table-striped">
+	                    <thead>
+	                    <tr>
+	                        <th>Barcode</th>
+	                        <th>Qty Stock</th>
+	                        <th>MRP</th>
+	                        <th>History</th>
+	                        <th>Last Changed</th>
+	                        
+	                    </tr>
+	                    </thead>
+	                    <tbody>
+	                    <tr ng-repeat="item in BarcodeList">
+	                        <td><a href="#" ng-click="LoadBarcodeInformation(item)">{{item.main[0].Barcode_No}}</a></td>
+	                        <td>{{item.main[0].Qty_In_Stock_val}}</td>
+	                        <td>{{item.main[0].MRP_val}}</td>
+	                        <td class="text-navy"> <i class="fa fa-level-up"></i> {{item.det.length}}</td>
+	                        <td>{{item.main[0].datetime}}</td>
+	                    </tr>
+                 
+
+	                    </tbody>
+	                </table>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title" >
+                <div style="float:left">
+                    <h5>Puchase <small>History</small></h5>
+                </div>
+                <div class="pull-right " style="float:right">
+                    <a class="btn btn-info no-padding" data-toggle="modal" ng-click="AddPurchaseDet()" data-target="#myModal">&nbsp;&nbsp;&nbsp;Add&nbsp;&nbsp;&nbsp;</a>
+				</div>
+            </div>
+
+            <div class="ibox-content">
+
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Barcode</th>
+                        <th>Party Name</th>
+                        <th>Bill Date</th>
+                        <th>Bill No</th>
+                        <th>Size</th>
+                        <th>Qty</th>
+                        <th>Cost Per Pcs</th>
+                        <th>Total Amount</th>
+                        <th>Discount</th>
+                        <th>Çase No</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in model.det">
+                        <td>{{item.Barcode_No}}</td>
+                        <td>{{item.Party_Name}}</td>
+                        <td>{{item.Bill_Date}}</td>
+                        <td class="text-navy"> <i class="fa fa-level-up"></i> {{item.Bill_No_val}}</td>
+                        <td>{{item.Size}}</td>
+                        <td>{{item.Qty_val}}</td>
+                        <td>{{item.Cost_Price_val}}</td>
+                        <td>{{item.T_Amount_val}}</td>
+                        <td>{{item.Discount}}</td>
+                        <td>{{item.Narration}}</td>
+                        <td><a href="" class="btn btn-warning" ng-click="EditPurchaseDet($index);" data-toggle="modal" data-target="#myModal">E</a> <small>|</small> <a href="" class="btn btn-danger" ng-click="DeletePurchaseDet(item.id_web)">X</a></td>
+                    </tr>
+                 
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-show="isDeveloperMode">
+<pre>{{model | json}}</pre>
+<pre>{{tempModel | json}}</pre>
+<pre>{{BarcodeList | json}}</pre>
+</div>
+
+<div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="false" ><div class="modal-backdrop  in"></div>
+                                <div class="modal-dialog">
+                                <div class="modal-content animated bounceInRight">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                            <i class="fa fa-laptop modal-icon"></i>
+										 <h4 class="modal-title">Barcode: {{model.Barcode_No}}</h4>
+                                            <small class="font-bold">Category: {{model.Category}} - MRP: {{model.MRP_val}} - Pcs {{model.Pcs_Length_val}} - Product Type: {{mode.Product_Type}} - U.O.M: {{item.UOM}}</small>
+                                        </div>
+                                        <div class="modal-body">
+                                     <div class="form-group hide"><label>Party Name</label> <input ng-model="tempModel.Barcode_No" ng-init="tempModel.Barcode_No = model.Barcode_No" type="text"   class="form-control"></div>
+                                            <div class="form-group"><label>Party Name</label> <input ng-model="tempModel.Party_Name" type="text"   class="form-control"></div>
+                                     <div class="form-group"><label>Bill Date</label> <input ng-model="tempModel.Bill_Date" type="text" placeholder="DD/MM/YYYY" class="form-control datecomp"></div>
+                                     <div class="form-group"><label>Bill No</label> <input ng-model="tempModel.Bill_No_val" type="number"  class="form-control"></div>
+                                     <div class="form-group"><label>Size</label> <input type="text" ng-model="tempModel.Size" class="form-control"></div>
+                                     <div class="form-group"><label>Qty</label> <input type="price" ng-model="tempModel.Qty_val" class="form-control"></div>
+                                   <div class="form-group"><label>Cost Per Pcs</label> <input type="number" ng-model="tempModel.Cost_Price_val" class="form-control"></div>
+                                   <div class="form-group"><label>Total Amount</label> <input type="number" ng-model="tempModel.T_Amount_val" class="form-control"></div>
+                                   <div class="form-group"><label>Discount</label> <input type="number" ng-model="tempModel.Discount" class="form-control"></div>
+                                  <div class="form-group"><label>Case No</label> <input type="text" ng-model="tempModel.Narration" class="form-control"></div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                                            <button type="button" ng-click="SavePurchaseDet(tempModel)" data-dismiss="modal" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>

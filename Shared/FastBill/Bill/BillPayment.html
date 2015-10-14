@@ -1,0 +1,292 @@
+
+
+	<div class="col-md-12 col-sm-12 col-lg-12">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<li class="fa fa-barcode"> Puchase <small>Amount</small></li>
+				<li class="fa fa-rupee pull-right"> Balance <small>: </small><strong>{{model.Balance_val}}</strong> </li>
+			</div>
+			<div class="panel-body">
+				
+				<div class="input-group m-b no-margins col-xs-12" >
+					<span class="input-group-addon width-50"><li class="fa fa-rupee"></li> Cash Paid</span> 
+					<input type="text"  ng-keyup="DoCalculation()"  ng-change="DoCalculation()" ng-model="model.Total_advance_val" placeholder="Cash Paid" class="text-success form-control" >
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12 col-sm-12 col-lg-12 animated fadeInRight" ng-show="btnCCOn || model.Credit_Card_Amount_val"><!-- CC Info!-->
+		<div class="panel panel-info ">
+			<div class="panel-heading">
+				<li class="fa fa-cc-visa"> CC <small>Information</small></li>
+				<li class="fa fa-rupee pull-right"> CC <small>: </small><strong>{{model.Credit_Card_Amount_val}}</strong> </li>
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Credit_Card_No || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-cc"></li> Number</span>
+				<input type="text"  ng-model="model.Credit_Card_No" placeholder="XXXX XXXX XXXX XXXX" class="form-control text-success " >
+					
+				
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Credit_Type || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-cc-visa"></li> CC Type</span>
+				<select ng-model="model.Credit_Type" class="text-success form-control" >
+					<option value="Visa">Visa</option>
+					<option value="Master Card">Master Card</option>
+					<option value="Mastro Card">Mastro Card</option>
+					<option value="HDFC Bank">HDFC Bank</option>
+					<option value="Other">Other</option>
+						
+				</select>
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Credit_Card_Name || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-user"></li> Name</span>
+				<input type="text" ng-model="model.Credit_Card_Name" placeholder="Name on Card" class="form-control text-success " >
+					
+				
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Credit_Card_Valid_Date || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-calendar"></li> Expiry Dt</span>
+				<input type="text" ng-model="model.Credit_Card_Valid_Date" placeholder="MM/YYYY" class="form-control text-success " >
+					
+				
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Credit_Card_Amount_val || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-rupee"></li> Amount</span>
+				<input ng-keyup="DoCalculation()"  ng-change="DoCalculation()"  type="text" ng-model="model.Credit_Card_Amount_val" placeholder="Credit Card Amount" class="form-control text-success " >
+					
+				
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12 col-sm-12 col-lg-12 animated fadeInRight" ng-show="btnCustOn || model.Cust_Name"> <!-- Customer Info!-->
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<li class="fa fa-users"> Customer <small>Information</small></li>
+			</div>
+			<div class="input-group m-b no-margins col-xs-12">
+				<span class="input-group-addon width-50"><li class="fa fa-user"></li> Name</span> 
+				<input type="text" placeholder="Customer Name" ng-model="model.Cust_Name" class="text-success form-control" >
+			</div>
+
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Add || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-map-marker"></li> Addr</span> 
+				<input type="text" placeholder="Customer Addr" ng-model="model.Addr" class="text-success form-control" >
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.City || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-building"></li> City</span> 
+				<input type="text" placeholder="Customer City" ng-model="model.City" class="text-success form-control" >
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Pincode || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-lemon-o"></li> Pin</span> 
+				<input type="text" placeholder="Customer Pincode" ng-model="model.Pincode"  class="text-success form-control" >
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Ph_no || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-phone"></li> Phone</span> 
+				<input type="text" placeholder="Customer Phone" ng-model="model.Ph_no" class="text-success form-control" >
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Mobile || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-mobile"></li> Mobile</span> 
+				<input type="text" placeholder="Customer Mobile" ng-model="model.Mobile" class="text-success form-control" >
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Email_ID || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-at"></li> Email</span> 
+				<input type="text" placeholder="Customer Email" ng-model="model.Email_ID" class="text-success form-control" >
+			</div>
+
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Birth_Date || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-calendar"></li> Birth Date</span> 
+				<input type="text" placeholder="Birth Date" ng-model="model.Birth_Date"  class="text-success form-control" >
+			</div>
+
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Anni_Date || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-calendar"></li> Anni. Date</span> 
+				<input type="text" placeholder="Anniversary Date" ng-model="model.Anni_Date"  class="text-success form-control" >
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Bal_Due_Date || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-calendar"></li> Due Date</span> 
+				<input type="text" placeholder="Customer Due Date" ng-model="model.Bal_Due_Date"  class="text-success form-control" >
+			</div>
+			
+		</div>
+	</div>
+	<div class="col-md-12 col-sm-12 col-lg-12 animated fadeInRight" ng-show="btnCCOn || model.Cheque_Amount"><!-- Cheque Details Info!-->
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<li class="fa fa-bank"> Cheque <small>Information</small></li>
+				<li class="fa fa-rupee pull-right"> Cheque <small>: </small><strong>{{model.Cheque_Amount}}</strong> </li>
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.A_C_No || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-info-circle"></li> A/c No</span>
+				<input type="text" ng-model="model.A_C_No" placeholder="Account Holder No" class="form-control text-success " >
+				
+			
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Bank_Name || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-rupee"></li> Bank Name</span>
+				<select  ng-model="model.Bank_Name" class="text-success form-control" >
+					<option value="ICICI">ICICI</option>
+					<option value="Axis Bank">Axis Bank</option>
+					<option value="Bank Of Baroda">Bank Of Baroda</option>
+					<option value="Bank Of India">Bank Of India</option>
+						
+				</select>
+				
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.A_C_Name || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-user"></li> Holder Name</span>
+				<input type="text"  placeholder="Account Holder Name"  ng-model="model.A_C_Name" class="form-control text-success " >
+					
+				
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Cheque_No || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-sort-numeric-asc"></li> No</span>
+				<input type="text" placeholder="Cheque No " ng-model="model.Cheque_No" class="form-control text-success " >
+					
+				
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Bank_Branch || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-map-marker"></li> Branch</span>
+				<input type="text" placeholder="Branch Name"  ng-model="model.Bank_Branch" class="form-control text-success " >
+					
+				
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Cheque_Amount || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-rupee"></li> Amount</span>
+				<input ng-keyup="DoCalculation()"  ng-change="DoCalculation()"  type="text" placeholder="Cheque Amount"  ng-model="model.Cheque_Amount" class="form-control text-success " >
+					
+				
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Cheque_Date || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-calendar"></li> Date</span>
+				<input type="text" placeholder="Cheque Date"  ng-model="model.Cheque_Date" class="form-control text-success " >
+					
+				
+			</div>
+		</div>
+	</div>
+	<div id="DisCoupon" class="DisCoupon col-md-12 col-sm-12 col-lg-12 animated fadeInRight " ng-show="btnDisOn " ><!-- Discount Coupon Info!--> <!-- || model.Discount_Coupon_Amount_val -->
+		<div class="panel panel-info" >
+			<div class="panel-heading">
+				<li class="fa fa-sort-numeric-desc"> Discount <small>Coupon</small></li>
+				<li class="fa fa-rupee pull-right"> Dis. <small>: </small><strong>{{model.Discount_Coupon_Amount_val}}</strong> </li>
+			</div>
+				<div class="input-group m-b no-margins col-xs-12" ng-show="model.FOC_Coupon_No || OpenAllPanel == true">
+					<span class="input-group-addon width-50"><li class="fa fa-sort-numeric-asc"></li> Coupon No</span> 
+					<input ng-keyup="DoCalculation()"  ng-change="DoCalculation()"  type="text" ng-model="model.FOC_Coupon_No" placeholder="Coupon No" class="text-success form-control" >
+				</div>
+				<div class="input-group m-b no-margins col-xs-12" ng-show="model.Discount_Coupon_Percentage_val || OpenAllPanel == true">
+					<span class="input-group-addon width-50"><li class="fa fa-rupee"></li> Discount</span> 
+					<div class="col-xs-4 no-padding">
+						<input ng-keyup="DoCalculation()"  ng-change="DoCalculation()"  type="text" ng-model="model.Discount_Coupon_Total_Amount_val" placeholder="On Amount" class="text-success form-control" >
+					</div>
+					<div class="col-xs-4 no-padding">
+					<select ng-keyup="DoCalculation()"  ng-change="DoCalculation()"  ng-model="model.Discount_Coupon_Percentage_val" class="text-success form-control" >
+						<option value="10">10%</option>
+						<option value="20">30%</option>
+						<option value="30">40%</option>
+						<option value="40">50%</option>
+						<option value="60">60%</option>
+						<option value="70">70%</option>
+						<option value="80">80%</option>
+						<option value="90">90%</option>
+						<option value="100">100%</option>
+					</select>
+					</div>
+				<div class="col-xs-4 no-padding">
+					<input  ng-keyup="DoCalculation()"  ng-change="DoCalculation()" type="text" ng-model="model.Discount_Coupon_Amount_val" placeholder="On Amount" class="text-success form-control" >
+				</div>
+				</div>
+		</div>
+	</div>
+	<div id="FOCCoupon" class="col-md-12 col-sm-12 col-lg-12 animated fadeInRight" ng-show="btnFOCOn || model.Coupon_Amt_val"><!-- FOC Coupon Info!-->
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<li class="fa fa-foursquare"> FOC <small>Details</small></li>
+				<li class="fa fa-rupee pull-right"> FOC <small>: </small><strong>{{model.Coupon_Amt_val}}</strong> </li>
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-user"></li> Employee No</span>
+				<input type="text" placeholder="Employee No" class="form-control text-success " />
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show=" OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-sort-numeric-asc"></li> Dept Code</span>
+				<input type="text" placeholder="Dept Code" class="form-control text-success " />
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Coupon_Amt_val || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-rupee"></li> Cou. Amount</span>
+				<input ng-keyup="DoCalculation()"  ng-change="DoCalculation()"  type="text" ng-model="model.Coupon_Amt_val" placeholder="Coupon Amount" class="form-control text-success " />
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Foc_Place || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-map-marker"></li> FOC. Place</span>
+				<input type="text" ng-model="model.Foc_Place" placeholder="FOC. Place" class="form-control text-success " />
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Remark || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-twitch"></li> Amount Details</span>
+				<input type="text" ng-model="model.Remark" placeholder="Amount Details" class="form-control text-success "  />
+			</div>
+			
+		</div>
+	</div>
+	
+	<div class="col-md-12 col-sm-12 col-lg-12 animated fadeInRight" ng-show="btnFOCOn || model.Gift_Voucher_Amount"><!-- Gift Voucher Info!-->
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<li class="fa fa-gift"> Gift <small>Voucher</small> </li>
+				<li class="fa fa-rupee pull-right"> Voucher <small>Amount: </small><strong>{{model.Gift_Voucher_Amount}}</strong> </li>
+					
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Gift_Voucher_Type || OpenAllPanel == true">
+				<input type="hidden" ng-model="model.Gift.GV_id" ng-init="model.Gift.GV_id=''">
+				<span class="input-group-addon width-50"><li class="fa fa-archive"></li> Coupon Type</span>
+				<select ng-model="model.Gift.Gift_Voucher_Type" class="text-success form-control" >
+					<option value="Sodex">Sodex</option>
+					<option value="Master Card">Master Card</option>
+					<option value="Mastro Card">Mastro Card</option>
+					<option value="Other">Other</option>
+						
+				</select>
+				
+			</div>
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Gift_Voucher_Amount || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-rupee"></li> On Amount</span>
+				<div class="col-xs-4 no-padding">
+				<input   type="text" ng-model="model.Gift.Gift_Voucher_Amount" placeholder="Amount" class="form-control text-success " >
+				</div>
+				<div class="col-xs-4 no-padding">
+				<span class="input-group-addon no-voucher"><li class="fa fa-rupee"></li> No.Voucher</span>
+				</div>
+				<div class="col-xs-4 no-padding">
+				<input  type="text" ng-model="model.Gift.Gift_Voucher_No" placeholder="Number" class="form-control text-success " >	
+			</div>
+			</div>
+
+
+			<div class="input-group m-b no-margins col-xs-12" ng-show="model.Gift_Voucher_ExpiryDate || OpenAllPanel == true">
+				<span class="input-group-addon width-50"><li class="fa fa-calendar"></li> Expiry Date</span>
+				<div class="col-xs-9 no-padding">
+					<input type="text" ng-model="model.Gift.Gift_Voucher_ExpiryDate" placeholder="Expiry" class="form-control text-success " >
+				</div>
+				<div class="col-xs-3 no-padding">
+				<button ng-click="addGiftVoucher()" class="btn btn-success dim btn-small-dim add-voucher" style="margin-bottom: 0px !important;"><i class="fa fa-plus"></i> Add </button>
+				</div>
+			</div>
+
+			<div  ng-show="OpenAllPanel == true">
+				<table class="table table-stripped table-border" >
+					<tr>
+						<th>Coupon</th>
+						<th>No. Voucher</th>		 
+						<th>&nbsp;</th>
+						<th>Amount</th>
+					</tr>
+					<tr ng-repeat="v in model.GiftVouchers" ng-click="editGiftVoucher(v)">
+						<td>{{ v.Gift_Voucher_Amount }}</td>
+						<td>{{ v.Gift_Voucher_No }}</td>
+						<td>=</td>
+						<td>{{ v.Total_Amount }}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+

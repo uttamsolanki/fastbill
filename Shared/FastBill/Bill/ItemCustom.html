@@ -1,0 +1,64 @@
+<div class="input-group m-b">
+	<span class="input-group-addon"><li class="fa fa-barcode"></li></span> 
+	<input type="text" ng-keyup="SearchBarcode(Barcode_No)" ng-model="Barcode_No" placeholder="Barcode / Item Name" class="text-success form-control" style="height:100px;font-size:16px">
+</div>
+<div class="panel panel-success">
+
+	<div class="panel-heading">
+		<li class="fa fa-shopping-cart"> Item <small>Information</small></li>
+		<li class="fa pull-right"> Available Qty <small>: </small><strong>{{model.Qty_In_Stock_val}} </strong></li>
+	</div>
+	
+
+	<div class="input-group m-b no-margins col-xs-12" >
+		<span class="input-group-addon width-50"><li class="fa fa-sort"></li> Qty: </span>
+		<input type="text" ng-model="tempModel.Qty_val"  placeholder="Quantity"  class="form-control text-success " >
+	</div>
+	
+	<div class="input-group m-b no-margins col-xs-12" >
+		<span class="input-group-addon width-50"><li class="fa fa-rupee"></li> Price: </span>
+		<input type="text" ng-model="tempModel.MRP_val" placeholder="Price"  class="form-control text-success " >
+	</div>
+
+	<div class="input-group m-b no-margins col-xs-12" >
+		<span class="input-group-addon width-50"><li class="fa fa-certificate"></li> Type: </span>
+		<input type="text" ng-model="tempModel.Product_Type"   placeholder="Suiting"  class="form-control text-success " >
+	</div>
+
+	<div class="input-group m-b no-margins col-xs-12" >
+		<span class="input-group-addon width-50"><li class="fa fa-certificate"></li> Category: </span>
+		<input type="text" ng-model="tempModel.category"   placeholder="Fresh"  class="form-control text-success " >
+	</div>
+
+	<div class="input-group m-b no-margins col-xs-12" >
+		<span class="input-group-addon width-50"><li class="fa fa-deviantart"></li> Pcs/Met: </span>
+		<input type="text"   ng-model="tempModel.UOM" placeholder="Pcs"  class="form-control text-success " >
+	</div>
+
+	<div class="input-group m-b no-margins col-xs-12" >
+		<span class="input-group-addon width-50"><li class="fa fa-male"></li> Cashier: </span>
+		<input type="text"  ng-model="tempModel.SalesManCode"  placeholder="Cashier"  class="form-control text-success " >
+	</div>
+
+	<div class="input-group m-b no-margins col-xs-12" >
+		<span class="input-group-addon width-50"><li class="fa fa-plus"></li> Tax: </span>
+		<input type="text"  ng-model="tempModel.Tax_per_val"  placeholder="Tax %"  class="form-control text-success " >
+	</div>
+
+	<div class="input-group m-b no-margins col-xs-12" >
+		<span class="input-group-addon width-50"><li class="fa fa-minus"></li> Discount: </span>
+		<input type="text"  ng-init="tempModel.Disc_per_item=0" ng-model="tempModel.Disc_per_item"  placeholder="1,2,3...."  class="form-control text-success " >
+	</div>
+
+
+	<div class="input-group m-b no-margins col-xs-12" >
+		<!--span class="input-group-addon width-50"><li class="fa fa-minus"></li> Discount: </span-->
+		<input type="hidden"  ng-init="''" ng-model="tempModel.id_web"  placeholder="1,2,3...."  class="form-control text-success " >
+	</div>
+
+	<div  class="input-group m-b no-margins col-xs-12 text-center ">
+		<button ng-click="addItem()"  class="btn btn-success dim btn-small-dim"><i class="fa fa-plus"></i> Add </button>	
+		<button ng-click="ExchangeSalesDetail(tempModel)"  class="btn btn-success dim btn-small-dim"><i class="fa fa-exchange"></i> Exchange </button>				
+	</div>		
+
+</div>

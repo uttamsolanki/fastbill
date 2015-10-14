@@ -1,0 +1,57 @@
+<div class="wrapper wrapper-content animated fadeInRight no-padding ">
+    <div class="ibox-content m-b-sm border-bottom padding-3 no-margins">
+        <div class="p-s">
+            <div class="pull-left m-r-md">
+                <i class="fa fa-rupee text-navy mid-icon"></i>
+            </div>
+
+            <div class="col-xs-5">
+                <div class="widget style1 navy-bg no-padding no-margins">
+                    <div class="row">
+                       <div class="col-xs-11 text-right">
+                           <span> Total Purchase </span>
+                           <h2 class="font-bold">{{model.Total_Amt_val}}/-</h2>
+                       </div>
+                   </div>
+               </div>
+
+            </div>
+            <h2>Purchase <small>Basket</small></h2>
+            <li class="fa fa-shopping-cart"><samll>Total Item: {{model.det.length}}</samll></li>
+
+        </div>
+    </div>
+    <div class="ibox-content forum-container padding-3  no-margins">
+        <div class="forum-item active" ng-repeat="item in model.det">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="col-xs-6">
+                        <div class="forum-icon">
+                            <i  ng-class="{'todo-completed':item.remove == 1}" class="fa fa-barcode" ng-click="editItem(item)" style="cursor: pointer;"></i>
+                        </div>
+                        <a href="forum_post.html"  ng-class="{'todo-completed':item.remove == 1}" class="forum-item-title">{{item.Barcode_No}}</a>
+                        <div  ng-class="{'todo-completed':item.remove == 1}" class="forum-sub-title">{{item.Product_Type}}, {{item.category}} <small>{{item.UOM}}</small>          <small>Agent: </small>{{item.SalesManCode}}  <small>Tax: </small>{{item.Tax_per_val}}
+                        <small>Discount: </small>{{item.Disc_per_item}} %
+                        </div>
+                    </div>
+                    <div class="col-xs-2 ">
+                        <span class="views-number"  ng-class="{'todo-completed':item.remove == 1}">{{item.Qty_val}}</span>
+                        <div>
+                            <small ng-class="{'todo-completed':item.remove == 1}">Qty</small>
+                        </div>
+                    </div>
+                    <div class="col-xs-2 ">
+                        <span class="views-number" ng-class="{'todo-completed':item.remove == 1}">{{item.MRP_val}}</span>
+                        <div>
+                            <small ng-class="{'todo-completed':item.remove == 1}">Price</small>
+                        </div>
+                    </div>
+                    <div class="col-xs-2 ">
+                        <button ng-show="item.remove == 0" ng-click="DeleteSalesDet(item)"  class="btn  btn-outline btn-success dim "><i class="fa fa-trash"></i> </button>
+                        <button ng-show="item.remove == 1" ng-click="ExchangeSalesDet(item)"  class="btn  btn-outline btn-success dim "><i class="fa fa-exchange"></i> </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
