@@ -23,7 +23,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="row">
                     <div class="col-md-4">
@@ -80,7 +79,7 @@
                         <div class="form-group"><label class="col-md-4 text-right no-padding  control-label">Product:</label>
 
                             <div class="col-md-8">
-                                <select class="form-control m-b" ng-model="model.Product_Type" name="account">
+                                <select class="form-control m-b" ng-change="changeProductType()" ng-model="model.Product_Type" name="account">
                                     <option>Suiting</option>
                                     <option>Fabric</option>
 									<option>Apparel Shirt</option>
@@ -104,7 +103,7 @@
 
                             <div class="col-md-8">
                                 <select class="form-control m-b"  ng-model="model.Category" name="account">
-                                    <option>Fresh</option>
+                                    <option selected="selected">Fresh</option>
                                     <option>Old</option>
                                     <option>Used</option>
                                     <option>Other</option>
@@ -271,31 +270,41 @@
 <pre>{{BarcodeList | json}}</pre>
 </div>
 
-<div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="false" ><div class="modal-backdrop  in"></div>
-                                <div class="modal-dialog">
-                                <div class="modal-content animated bounceInRight">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                            <i class="fa fa-laptop modal-icon"></i>
-										 <h4 class="modal-title">Barcode: {{model.Barcode_No}}</h4>
-                                            <small class="font-bold">Category: {{model.Category}} - MRP: {{model.MRP_val}} - Pcs {{model.Pcs_Length_val}} - Product Type: {{mode.Product_Type}} - U.O.M: {{item.UOM}}</small>
-                                        </div>
-                                        <div class="modal-body">
-                                     <div class="form-group hide"><label>Party Name</label> <input ng-model="tempModel.Barcode_No" ng-init="tempModel.Barcode_No = model.Barcode_No" type="text"   class="form-control"></div>
-                                            <div class="form-group"><label>Party Name</label> <input ng-model="tempModel.Party_Name" type="text"   class="form-control"></div>
-                                     <div class="form-group"><label>Bill Date</label> <input ng-model="tempModel.Bill_Date" type="text" placeholder="DD/MM/YYYY" class="form-control datecomp"></div>
-                                     <div class="form-group"><label>Bill No</label> <input ng-model="tempModel.Bill_No_val" type="number"  class="form-control"></div>
-                                     <div class="form-group"><label>Size</label> <input type="text" ng-model="tempModel.Size" class="form-control"></div>
-                                     <div class="form-group"><label>Qty</label> <input type="price" ng-model="tempModel.Qty_val" class="form-control"></div>
-                                   <div class="form-group"><label>Cost Per Pcs</label> <input type="number" ng-model="tempModel.Cost_Price_val" class="form-control"></div>
-                                   <div class="form-group"><label>Total Amount</label> <input type="number" ng-model="tempModel.T_Amount_val" class="form-control"></div>
-                                   <div class="form-group"><label>Discount</label> <input type="number" ng-model="tempModel.Discount" class="form-control"></div>
-                                  <div class="form-group"><label>Case No</label> <input type="text" ng-model="tempModel.Narration" class="form-control"></div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                                            <button type="button" ng-click="SavePurchaseDet(tempModel)" data-dismiss="modal" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="false" >
+    <div class="modal-backdrop  in"></div>
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <i class="fa fa-laptop modal-icon"></i>
+						  <h4 class="modal-title">Barcode: {{model.Barcode_No}}</h4>
+                            <small class="font-bold">Category: {{model.Category}} - MRP: {{model.MRP_val}} - Pcs {{model.Pcs_Length_val}} - Product Type: {{mode.Product_Type}} - U.O.M: {{item.UOM}}</small>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group hide"><label>Party Name{{isDeveloperMode}}</label> <input ng-model="tempModel.Barcode_No" ng-init="tempModel.Barcode_No = model.Barcode_No" type="text"   class="form-control">
+                    </div>
+                    <div class="form-group" style="position:relative"><label>Party Name</label> 
+                    <input ng-model="tempModel.Party_Name" type="text" value="{{select  }}"   class="form-control" ng-keypress="openDiv()" ng-keyup="openDiv()" ng-keydown="openDiv()" >
+                     <ul class="dropdown-menu"  id="dropdown-menu" ng-style="{display: displayStyle}">
+                            <li ng-repeat="partyName in partyNames | filter:tempModel.Party_Name " ng-click="selected(partyName)" >{{partyName}}</li>
+                    
+                    </ul>
+                    </div>
+                   <div class="form-group"><label>Bill Date</label> <input ng-model="tempModel.Bill_Date | date:'dd/MM/yyyy'" type="text" placeholder="DD/MM/YYYY" class="form-control datecomp"></div>
+                    <div class="form-group"><label>Bill No</label> <input ng-model="tempModel.Bill_No_val" type="number"  class="form-control"></div>
+                    <div class="form-group"><label>Size</label> <input type="text" ng-model="tempModel.Size" class="form-control"></div>
+                    <div class="form-group"><label>Qty</label> 
+                    <input type="price" ng-model="tempModel.Qty_val" class="form-control" ng-keypress="doCalculation()" ng-keyup="doCalculation()" ng-keydown="doCalculation()"></div>
+                    <div class="form-group"><label>Cost Per Pcs</label> 
+                    <input type="number" ng-model="tempModel.Cost_Price_val" class="form-control" ng-keypress="doCalculation()" ng-keyup="doCalculation()" ng-keydown="doCalculation()"></div>
+                    <div class="form-group"><label>Total Amount</label> <input type="number" ng-model="tempModel.T_Amount_val" class="form-control" readonly></div>
+                    <div class="form-group"><label>Discount</label> <input type="number" ng-model="tempModel.Discount" class="form-control"></div>
+                    <div class="form-group"><label>Case No</label> <input type="text" ng-model="tempModel.Narration" class="form-control"></div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                    <button type="button" ng-click="SavePurchaseDet(tempModel)" data-dismiss="modal" class="btn btn-primary">Save changes</button>
+                    </div>
+            </div>
+        </div>
+</div>

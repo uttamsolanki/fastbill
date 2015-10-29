@@ -56,6 +56,20 @@ if ($_REQUEST['action'] == "") $_REQUEST['action']= "read";
                echo json_encode($encode);
            break;
 
+        case 'getPartyname':
+
+            $qPurchase = "SELECT DISTINCT Party_Name FROM `purchase_bookdet` ";
+
+            $result = mysql_query($qPurchase);
+            if (!$result) echo "No Data!!";
+            $encode = array();
+
+            while($row = mysql_fetch_array($result,MYSQL_ASSOC)) {
+               $encode[] = $row['Party_Name'];
+			   }
+               echo json_encode($encode);
+           break;
+
         //////////Simple Read Raw Data
         case 'GetBarcode':
 
@@ -97,21 +111,22 @@ if ($_REQUEST['action'] == "") $_REQUEST['action']= "read";
         break;
 
         case 'SavePurchaseDet':
-		    // print_r($_REQUEST);
 			$names = "";
 			$values = "";
-			if ($_REQUEST['qry']['id_web'] != ""  ){
+			if (isset($_REQUEST['qry']['id_web']) && $_REQUEST['qry']['id_web']!= ""  ){
 
-                foreach($_REQUEST[qry] as $key => $val){
+                foreach($_REQUEST['qry'] as $key => $val){
 				    $param .= $key . " = '$val',";
 				}
 				$param = rtrim($param,",");
 
 			    $InsertUpdateQryPurchaseDet = "update  Purchase_BookDet set $param,datetime=NOW() where id_web = " . $_REQUEST['qry']['id_web'];
-			}
+
+
+            }
 			else
 			{
-			    foreach($_REQUEST[qry] as $key => $val){
+			    foreach($_REQUEST['qry'] as $key => $val){
 				    $names .= $key . ",";
 				 	$values .= "'" . $val . "',";
 				}
@@ -119,7 +134,11 @@ if ($_REQUEST['action'] == "") $_REQUEST['action']= "read";
 			 	$values = rtrim($values,",");
 
 			 	$InsertUpdateQryPurchaseDet = "Insert into Purchase_BookDet (id_web,datetime,$names) value (NULL,NOW(),$values)";
-			}
+                $v = $_REQUEST['qry']['Qty_val'];
+                $InsertUpdateQryPurchase = "update Purchase_Book set Qty_In_Stock_val = Qty_In_Stock_val + '$v' ,datetime=NOW() where Barcode_No ='".$_REQUEST['qry']['Barcode_No']."'";
+                mysql_query($InsertUpdateQryPurchase);
+
+            }
 			$result = mysql_query($InsertUpdateQryPurchaseDet);
 			if ($result == 1){
 			    echo "-Success-";
@@ -149,14 +168,15 @@ if ($_REQUEST['action'] == "") $_REQUEST['action']= "read";
 			    $headers = 'From: fastbill@microtechsupport.com' . "\r\n" .
 			    'Reply-To: nasihere@gmail.com' . "\r\n" .
 			    'X-Mailer: PHP/' . phpversion();
-		    echo "Email Sent: " .	mail($to, $subject, $message, $headers);
+	 //	    echo "Email Sent: " .	mail($to, $subject, $message, $headers);
 		break;
 
 		case "SavePurchase":
-   		    // print_r($_REQUEST);
+   		    //print_r($_REQUEST);
+           // exit;
    			 $names = "";
    			 $values = "";
-			 if ($_REQUEST['qry']['id_web'] != ""  ){
+			 if (isset($_REQUEST['qry']['id_web']) && $_REQUEST['qry']['id_web'] != "" ){
    				 foreach($_REQUEST[qry] as $key => $val){
 					 if ($key == "det") break;
    					 $param .= $key . " = '$val',";
@@ -166,7 +186,7 @@ if ($_REQUEST['action'] == "") $_REQUEST['action']= "read";
    			}
    			else
    			{
-   			 	foreach($_REQUEST[qry] as $key => $val){
+   			 	foreach($_REQUEST['qry'] as $key => $val){
    				    $names .= $key . ",";
    				 	$values .= "'" . $val . "',";
    				}
@@ -174,6 +194,7 @@ if ($_REQUEST['action'] == "") $_REQUEST['action']= "read";
    			 	$values = rtrim($values,",");
                 $InsertUpdateQryPurchaseDet = "Insert into Purchase_Book (id_web,datetime,$names) value (NULL,NOW(),$values)";
    			}
+            //echo $InsertUpdateQryPurchaseDet;
 			$result = mysql_query($InsertUpdateQryPurchaseDet);
    			if ($result == 1){
    			    echo "-Success-";
@@ -197,5 +218,5 @@ if ($_REQUEST['action'] == "") $_REQUEST['action']= "read";
     }
 
      mysql_close($link);
-     
+
 ?>

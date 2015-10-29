@@ -427,13 +427,14 @@ app.controller("BaseController", ['$scope','API','$http','$compile','$location',
 
 	$scope.Save = function(){
 		localStorage.setItem('Bill_No', $scope.model.Bill_No);
-		
+		if (confirm("Are you sure want to Save Bill No: " + $scope.model.Bill_No)){
 		$scope.model.saved = 1;
         $.post(HttpUrl,{qry:$scope.model,action:"SaveSales_Book"},function(data){
          console.log(data);
           toastr.success( data, "Status");
          setTimeout(function() { init(); }, 500);
         })
+    }
 		
 	}
 	$scope.SaveDet = function(){

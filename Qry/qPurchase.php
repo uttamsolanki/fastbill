@@ -46,6 +46,7 @@ if ($_REQUEST['action'] == "") $_REQUEST['action']= "read";
             echo json_encode($encode);
         break;
 
+
     }
     mysql_close($link);
 
